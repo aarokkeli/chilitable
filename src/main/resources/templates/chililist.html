@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Chililist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Chili-information</h1>
+			</div>	
+			<div class="col" style="padding: 10px">
+				<h3 sec:authorize="isAuthenticated()" th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]] !</h3>
+			</div>
+			<div class="d-flex justify-content-right" style="padding: 10px">
+				<a sec:authorize="isAnonymous()" href="/login" class="btn btn-sm btn-primary">Login</a>
+				<form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+					<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+				</form>
+			</div>
+		</div>
+	
+	    <table class="table table-striped">
+			<tr>
+				<th></th>
+			    <th>Name</th>
+			    <th>Scovilles</th>
+			    <th>Color</th>
+			    <th>Heat level</th>
+			    <th sec:authorize="hasAuthority('ADMIN')"></th>
+			    <th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+	    	<tr th:each = "chili : ${chilis}">
+	    	<td><a th:href="${chili.link}" th:target="_blank" class="btn btn-success">Info</a></td>
+	    		<td class="align-middle" th:text="${chili.title}"></td>
+	    		<td class="align-middle" th:text="${chili.shu}"></td>
+	    		<td class="align-middle" th:text="${chili.color.name}"></td>
+	    		<td class="align-middle" th:text="${chili.category.name}"></td>
+	    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${chili.chiliId})}" class="btn btn-danger">Delete</a></td>
+	    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/editchili/{id}(id=${chili.chiliId})}" class="btn btn-primary">Edit</a></td>
+	    	</tr>
+	     </table>
+	     <a href="/addchili" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Add chili</a>
+	     <a href="/addcolor" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Add new color</a>
+	     <a href="/addheat" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Add new heat-level</a>
+    </div>
+</body>
+</html>

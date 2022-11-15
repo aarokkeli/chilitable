@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add genre</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="d-flex justify-content-center">
+		<form th:object="${category}" th:action="@{/savecategory}" action="#" method="post">
+		  	
+		  	<div style="clear: both; display: block; height: 10px;" class="form-group"></div>
+		  	<h1>Add heat level</h1>
+		  	<div style="clear: both; display: block; height: 10px;" class="form-group"></div>
+		  	
+		  	<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="name">Heat level name</span>
+		  		</div>
+		  		<input type="text" class="form-control" placeholder="Name" aria-label="name" aria-describedby="name" th:field="*{name}">
+		  	</div>
+			
+			<input type="submit" value="Save" class="btn btn-success"></input>
+			<a href="/chililist" class="btn btn-danger">Cancel</a>
+		</form>
+	</div>
+</body>
+</html>

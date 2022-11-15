@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add chili</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="d-flex justify-content-center">
+		<form th:object="${chili}" th:action="@{/save}" action="#" method="post">
+		  	
+		  	<div style="clear: both; display: block; height: 10px;" class="form-group"></div>
+		  	<h1>Add chili</h1>
+		  	<div style="clear: both; display: block; height: 10px;" class="form-group"></div>
+		  	
+		  	<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="title">Name</span>
+		  		</div>
+		  		<input type="text" class="form-control" placeholder="Name of the chili" aria-label="Title" aria-describedby="title" th:field="*{title}">
+		  	</div>
+		  	
+		  	<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="shu">Scovilles</span>
+		  		</div>
+		  		<input type="text" class="form-control" placeholder="Scovilles" aria-label="shu" aria-describedby="shu" th:field="*{shu}">
+		  	</div>
+
+		  	<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="color">Color</span>
+		  		</div>
+		  		<select id="color" th:field="*{color}" class="form-control">
+					<option th:each="color: ${colors}" th:value="${color.colorId}" th:text="${color.name}"></option>
+				</select>
+		  	</div>
+	  	
+		  	<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="category">Heat level</span>
+		  		</div>
+		  		<select id="category" th:field="*{category}" class="form-control">
+					<option th:each="category: ${categories}" th:value="${category.categoryId}" th:text="${category.name}"></option>
+				</select>
+		  	</div>
+			
+			<div class="input-group mb-3">
+		  		<div class="input-group-prepend">
+		  			<span class="input-group-text" id="link">Wikipedia-link</span>
+		  		</div>
+		  		<input type="text" class="form-control" placeholder="Link" aria-label="link" aria-describedby="link" th:field="*{link}">
+		  	</div>
+			
+			<input type="submit" value="Save" class="btn btn-success"></input>
+			<a href="/chililist" class="btn btn-danger">Cancel</a>
+		</form>
+	</div>
+</body>
+</html>
