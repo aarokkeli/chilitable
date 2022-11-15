@@ -25,7 +25,7 @@ public class ChilitableApplication {
 		SpringApplication.run(ChilitableApplication.class, args);
 	}
 
-	@Bean
+	/* @Bean
 	public CommandLineRunner chiliDemo(ChiliRepository crepo, UserRepository urepo, CategoryRepository caterepo,
 			ColorRepository colorepo) {
 		return (args) -> {
@@ -57,7 +57,6 @@ public class ChilitableApplication {
 			crepo.save(chili1);
 			crepo.save(chili2);
 			crepo.save(chili3);
-		};
-
-	}
+		}; 
+	} */
 }
