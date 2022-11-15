@@ -25,7 +25,7 @@ public class ChilitableApplication {
 		SpringApplication.run(ChilitableApplication.class, args);
 	}
 
-	/* @Bean
+	@Bean
 	public CommandLineRunner chiliDemo(ChiliRepository crepo, UserRepository urepo, CategoryRepository caterepo,
 			ColorRepository colorepo) {
 		return (args) -> {
@@ -57,6 +57,12 @@ public class ChilitableApplication {
 			crepo.save(chili1);
 			crepo.save(chili2);
 			crepo.save(chili3);
+			
+			// Create users admin/admin and user/user
+			User user1 = new User("user", "$2a$10$xDSOHxQuLo4syde/Xy9aMOBoUxFVuzTTzbndyL1Jm27G/9qM6rp9m", "USER");
+			User user2 = new User("admin", "$2a$10$6TyLJ3vgERNGGhoWKbzrxOiUF/vlFt5PE62DiF.2qvfEx8UfhwW0u", "ADMIN");
+			urepo.save(user1);
+			urepo.save(user2);
 		}; 
-	} */
+	}
 }
